@@ -11,21 +11,21 @@ package-reinstall:
 		python3 -m pip install --force-reinstall --user dist/*.whl
 
 test:
-	poetry run pytest 
+		poetry run pytest 
 
 test-coverage:
-	poetry run pytest --cov
+		poetry run pytest --cov
 
 lint:
 		poetry run flake8 gendiff
 
 selfcheck:
-	poetry check
+		poetry check
 
 check: selfcheck test lint
 
 build: check
-	poetry build
+		poetry build
 
 .PHONY: install test lint selfcheck check build
 		

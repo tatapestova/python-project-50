@@ -1,6 +1,13 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/tatapestova/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/tatapestova/python-project-50/actions)
 
+### Codeclimate
+<a href="https://codeclimate.com/github/tatapestova/python-project-50/maintainability"><img 
+src="https://api.codeclimate.com/v1/badges/baa3a2b566dd0b9e965d/maintainability" /></a>
+
+<a href="https://codeclimate.com/github/tatapestova/python-project-50/test_coverage"><img 
+src="https://api.codeclimate.com/v1/badges/baa3a2b566dd0b9e965d/test_coverage" /></a>
+
 ### FILE DIFFERENCE CALCULATOR
 
 ```bash

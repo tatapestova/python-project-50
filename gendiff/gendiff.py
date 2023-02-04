@@ -2,7 +2,6 @@ import json
 
 
 def read_file(file):
-    #with open(file, 'r') as open_file:
     read_file = json.load(open(file))
     return read_file
 
@@ -45,9 +44,9 @@ def to_style(diff_dict, dict1, dict2):
 
 def lower_bool(dict_):
     for key, value in dict_.items():
-        if value == False:
+        if value is False:
             dict_[key] = 'false'
-        if value == True:
+        if value is True:
             dict_[key] = 'true'
     return dict_
 
@@ -62,4 +61,5 @@ def generate_diff(first_file: dict, second_file: dict):
     result = '\n'.join(['{', diff_str, '}'])
     return result
 
-__all__ = ('read_file', 'genetare_sorted_dict_diff', 'to_style','lower_bool', 'generate_diff')
+
+__all__ = ('read_file', 'genetare_sorted_dict_diff', 'to_style', 'lower_bool', 'generate_diff')

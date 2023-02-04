@@ -9,13 +9,14 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8.1"
 
 [tool.poetry.scripts]
 gendiff =  "gendiff.scripts.gendiff:main" 
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.20.2"
+flake8 = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core"]

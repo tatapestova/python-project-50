@@ -2,12 +2,14 @@ from gendiff.gendiff import read_file, genetare_sorted_dict_diff, to_style, lowe
 
 
 def test_read_file():
-    assert read_file('filepath1.json') == {
-    "host": "hexlet.io",
-    "timeout": 50,
-    "proxy": "123.234.53.22",
-    "follow": False
-  }
+    dict1 = {
+        "host": "hexlet.io", 
+        "timeout": 50, 
+        "proxy": "123.234.53.22", 
+        "follow": False
+        }
+    assert read_file('filepath1.json') == dict1
+    assert read_file('filepath1.yml') == dict1
 
 
 def test_genetare_sorted_dict_diff():
@@ -25,20 +27,17 @@ def test_to_style():
 
 def test_lower_bool():
     dict1 = {
-    "host": "hexlet.io",
-    "timeout": 50,
-    "proxy": "123.234.53.22",
-    "follow": False
-  }
-    assert lower_bool(dict1) == {
-    "host": "hexlet.io",
-    "timeout": 50,
-    "proxy": "123.234.53.22",
-    "follow": 'false'
-  }
+        "host": "hexlet.io", 
+        "timeout": 50, 
+        "proxy": "123.234.53.22", 
+        "follow": False
+        }
+    lower_bool(dict1)
+    assert dict1['follow'] == 'false'
+
 
 def test_generate_diff():
-    assert generate_diff('filepath1.json', 'filepath2.json') == '''{
+    result = '''{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -46,3 +45,5 @@ def test_generate_diff():
   + timeout: 20
   + verbose: true
 }'''
+    assert generate_diff('filepath1.json', 'filepath2.json') == result
+    assert generate_diff('filepath1.yml', 'filepath2.yml') == result

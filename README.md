@@ -17,3 +17,8 @@ src="https://api.codeclimate.com/v1/badges/baa3a2b566dd0b9e965d/test_coverage" /
 $ gendiff filepath1.json filepath2.json
 ```
 [![asciicast](https://asciinema.org/a/EF3p0xMKmDP2SW40QwwmWszYG.svg)](https://asciinema.org/a/EF3p0xMKmDP2SW40QwwmWszYG)
+
+```bash
+$ gendiff filepath1.yml filepath2.yml
+```
+[![asciicast](https://asciinema.org/a/uB6FahjbBRlpnYbje2DsGml9V.svg)](https://asciinema.org/a/uB6FahjbBRlpnYbje2DsGml9V)

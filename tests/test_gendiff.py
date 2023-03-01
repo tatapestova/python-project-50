@@ -1,49 +1,28 @@
-from gendiff.gendiff import read_file, genetare_sorted_dict_diff, to_style, lower_bool, generate_diff
+from gendiff.gendiff import generate_diff
 
 
-def test_read_file():
-    dict1 = {
-        "host": "hexlet.io", 
-        "timeout": 50, 
-        "proxy": "123.234.53.22", 
-        "follow": False
-        }
-    assert read_file('filepath1.json') == dict1
-    assert read_file('filepath1.yml') == dict1
+PLAIN_JSON1 = 'tests/fixtures/files/filepath1.json'
+PLAIN_JSON2 = 'tests/fixtures/files/filepath2.json'
+PLAIN_YML1 = 'tests/fixtures/files/filepath1.yml'
+PLAIN_YML2 = 'tests/fixtures/files/filepath2.yml'
+NESTED_JSON1 = 'tests/fixtures/files/file1.json'
+NESTED_JSON2 = 'tests/fixtures/files/file2.json'
+NESTED_YML1 = 'tests/fixtures/files/file1.yml'
+NESTED_YML2 = 'tests/fixtures/files/file2.yml'
+
+RESULT_PLAIN = 'tests/fixtures/result_plain.txt'
+RESULT_NESTED = 'tests/fixtures/result_nested.txt'
 
 
-def test_genetare_sorted_dict_diff():
-    dict1 = {'a': 1, 'b': 2, 'c': 3}
-    dict2 = {'a': 3, 'b': 2, 'd': 4}
-    genetare_sorted_dict_diff(dict1, dict2) == {'a': 'diff', 'b': 'same', 'c': 'only1', 'd': 'only2'}
+def test_generate_plain_diff():
+    with open(RESULT_PLAIN) as file:
+        expected_plain_result = file.read()
+    assert generate_diff(PLAIN_JSON1, PLAIN_JSON2) == expected_plain_result
+    assert generate_diff(PLAIN_YML1, PLAIN_YML2) == expected_plain_result
 
 
-def test_to_style():
-    diff_dict = {'a': 'diff', 'b': 'same', 'c': 'only1', 'd': 'only2'}
-    dict1 = {'a': 1, 'b': 2, 'c': 3}
-    dict2 = {'a': 3, 'b': 2, 'd': 4}
-    to_style(diff_dict, dict1, dict2) == {' - a': 1, ' + a': 3, '  b': 2, ' - c': 3, ' + d': 4}
-
-
-def test_lower_bool():
-    dict1 = {
-        "host": "hexlet.io", 
-        "timeout": 50, 
-        "proxy": "123.234.53.22", 
-        "follow": False
-        }
-    lower_bool(dict1)
-    assert dict1['follow'] == 'false'
-
-
-def test_generate_diff():
-    result = '''{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}'''
-    assert generate_diff('filepath1.json', 'filepath2.json') == result
-    assert generate_diff('filepath1.yml', 'filepath2.yml') == result
+def test_generate_nested_diff():
+    with open(RESULT_NESTED) as file:
+        expected_nested_result = file.read()
+    assert generate_diff(NESTED_JSON1, NESTED_JSON2) == expected_nested_result
+    assert generate_diff(NESTED_YML1, NESTED_YML2) == expected_nested_result

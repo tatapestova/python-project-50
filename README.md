@@ -13,7 +13,7 @@ src="https://api.codeclimate.com/v1/badges/baa3a2b566dd0b9e965d/test_coverage" /
 
 ### FILE DIFFERENCE CALCULATOR
 
-### PLAIN FILES
+### FLAT FILES (STYLISH STYLE)
 ```bash
 $ gendiff filepath1.json filepath2.json
 ```
@@ -24,7 +24,15 @@ $ gendiff filepath1.yml filepath2.yml
 ```
 [![asciicast](https://asciinema.org/a/uB6FahjbBRlpnYbje2DsGml9V.svg)](https://asciinema.org/a/uB6FahjbBRlpnYbje2DsGml9V)
 
-### NESTED FILES
+### FLAT FILES (PLAIN STYLE)
+
+```bash
+$ gendiff --format plain filepath1.yml filepath2.yml
+```
+
+[![asciicast](https://asciinema.org/a/fKseZnYBCKwIEaWP9YNPCtapk.svg)](https://asciinema.org/a/fKseZnYBCKwIEaWP9YNPCtapk)
+
+### NESTED FILES (STYLISH STYLE)
 
 ```bash
 $ gendiff file1.json file2.json
@@ -36,3 +44,10 @@ $ gendiff file1.json file2.json
 $ gendiff file1.yml file2.yml
 ```
 [![asciicast](https://asciinema.org/a/5rp4Z4wC5TFBlXxaVIeERezlP.svg)](https://asciinema.org/a/5rp4Z4wC5TFBlXxaVIeERezlP)
+
+### NESTED FILES (PLAIN STYLE)
+
+```bash
+$ gendiff --format plain file1.json file2.json
+```
+[![asciicast](https://asciinema.org/a/rmvvkaIHdgAWkyH5RyFaMoV8d.svg)](https://asciinema.org/a/rmvvkaIHdgAWkyH5RyFaMoV8d)

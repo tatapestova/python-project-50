@@ -1,0 +1,98 @@
+{
+    "common": {
+        "value": {
+            "follow": {
+                "value": false,
+                "node status": "ADDED"
+            },
+            "setting1": {
+                "value": "Value 1",
+                "node status": "UNCHANGED"
+            },
+            "setting2": {
+                "value": 200,
+                "node status": "REMOVED"
+            },
+            "setting3": {
+                "new value": null,
+                "old value": true,
+                "node status": "UPDATED"
+            },
+            "setting4": {
+                "value": "blah blah",
+                "node status": "ADDED"
+            },
+            "setting5": {
+                "value": {
+                    "key5": "value5"
+                },
+                "node status": "ADDED"
+            },
+            "setting6": {
+                "value": {
+                    "doge": {
+                        "value": {
+                            "wow": {
+                                "new value": "so much",
+                                "old value": "",
+                                "node status": "UPDATED"
+                            }
+                        },
+                        "node status": "NESTED"
+                    },
+                    "key": {
+                        "value": "value",
+                        "node status": "UNCHANGED"
+                    },
+                    "ops": {
+                        "value": "vops",
+                        "node status": "ADDED"
+                    }
+                },
+                "node status": "NESTED"
+            }
+        },
+        "node status": "NESTED"
+    },
+    "group1": {
+        "value": {
+            "baz": {
+                "new value": "bars",
+                "old value": "bas",
+                "node status": "UPDATED"
+            },
+            "foo": {
+                "value": "bar",
+                "node status": "UNCHANGED"
+            },
+            "nest": {
+                "new value": "str",
+                "old value": {
+                    "key": "value"
+                },
+                "node status": "UPDATED"
+            }
+        },
+        "node status": "NESTED"
+    },
+    "group2": {
+        "value": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        },
+        "node status": "REMOVED"
+    },
+    "group3": {
+        "value": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        },
+        "node status": "ADDED"
+    }
+}

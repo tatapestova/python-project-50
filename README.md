@@ -32,6 +32,14 @@ $ gendiff --format plain filepath1.yml filepath2.yml
 
 [![asciicast](https://asciinema.org/a/fKseZnYBCKwIEaWP9YNPCtapk.svg)](https://asciinema.org/a/fKseZnYBCKwIEaWP9YNPCtapk)
 
+### FLAT FILES (JSON STYLE)
+
+```bash
+$ gendiff --format json filepath1.json filepath2.json
+```
+
+[![asciicast](https://asciinema.org/a/rxIiDwWoY3jGnvSvxUhXJfY80.svg)](https://asciinema.org/a/rxIiDwWoY3jGnvSvxUhXJfY80)
+
 ### NESTED FILES (STYLISH STYLE)
 
 ```bash
@@ -51,3 +59,12 @@ $ gendiff file1.yml file2.yml
 $ gendiff --format plain file1.json file2.json
 ```
 [![asciicast](https://asciinema.org/a/rmvvkaIHdgAWkyH5RyFaMoV8d.svg)](https://asciinema.org/a/rmvvkaIHdgAWkyH5RyFaMoV8d)
+
+### NESTED FILES (JSON STYLE)
+
+```bash
+$ gendiff --format json file1.json file2.json
+```
+[![asciicast](https://asciinema.org/a/HPC4LXtehAFdYDW8nTH4xVAGK.svg)](https://asciinema.org/a/HPC4LXtehAFdYDW8nTH4xVAGK)
+
+

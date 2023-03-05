@@ -17,6 +17,7 @@ PLAIN_FLAT = 'tests/fixtures/results/plain_flat.txt'
 JSON_NESTED = 'tests/fixtures/results/json_nested.txt'
 JSON_FLAT = 'tests/fixtures/results/json_flat.txt'
 
+
 def test_generate_stylish_flat_diff():
     with open(STYLISH_FLAT) as file:
         expected_flat_result = file.read()
@@ -32,7 +33,8 @@ def test_generate_stylish_nested_diff():
     assert generate_diff(NESTED_YML1, NESTED_YAML2) == expected_nested_result
     assert generate_diff(NESTED_JSON1, NESTED_YAML2) == expected_nested_result
 
-def test_generate_flat_nested_diff():
+
+def test_generate_plain_flat_diff():
     with open(PLAIN_FLAT) as file:
         expected_flat_result = file.read()
     assert generate_diff(FLAT_JSON1, FLAT_JSON2, 'plain') == expected_flat_result
@@ -48,7 +50,7 @@ def test_generate_plain_nested_diff():
     assert generate_diff(NESTED_JSON1, NESTED_YAML2, 'plain') == expected_nested_result
 
 
-def test_generate_json_nested_diff():
+def test_generate_json_flat_diff():
     with open(JSON_FLAT) as file:
         expected_flat_result = file.read()
     assert generate_diff(FLAT_JSON1, FLAT_JSON2, 'json') == expected_flat_result

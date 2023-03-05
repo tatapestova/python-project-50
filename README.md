@@ -66,5 +66,3 @@ $ gendiff --format plain file1.json file2.json
 $ gendiff --format json file1.json file2.json
 ```
 [![asciicast](https://asciinema.org/a/HPC4LXtehAFdYDW8nTH4xVAGK.svg)](https://asciinema.org/a/HPC4LXtehAFdYDW8nTH4xVAGK)
-
-

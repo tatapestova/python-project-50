@@ -4,7 +4,9 @@ from gendiff.file_editing.lower_bool import lower_bool
 def is_complex_value(val):
     if isinstance(val, dict):
         val = '[complex value]'
-    elif (val != 'false' and val != 'null' and val != 'true' and val != int):
+    elif isinstance(val, int):
+        val
+    elif (val != 'false' and val != 'null' and val != 'true'):
         val = f"'{val}'"
     return val
 

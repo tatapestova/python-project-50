@@ -1,12 +1,12 @@
 from gendiff.file_editing.lower_bool import lower_bool
 
 
-def is_complex_value(value):
-    if isinstance(value, dict):
-        value = '[complex value]'
-    elif (value != 'false' and value != 'null' and value != 'true'):
-        value = f"'{value}'"
-    return value
+def is_complex_value(val):
+    if isinstance(val, dict):
+        val = '[complex value]'
+    elif (val != 'false' and val != 'null' and val != 'true' and val != int):
+        val = f"'{val}'"
+    return val
 
 
 def to_change_keys(value, prefix):

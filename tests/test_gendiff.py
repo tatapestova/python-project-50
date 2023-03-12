@@ -20,9 +20,10 @@ PLAIN_FLAT = 'tests/fixtures/results/plain_flat.txt'
 JSON_NESTED = 'tests/fixtures/results/json_nested.txt'
 JSON_FLAT = 'tests/fixtures/results/json_flat.txt'
 
+
 @pytest.mark.parametrize('file1, file2, stile, expected', [
     (FLAT_JSON1, FLAT_JSON2, 'stylish', STYLISH_FLAT),
-    (FLAT_YML1, FLAT_YAML2, 'stylish', STYLISH_FLAT), 
+    (FLAT_YML1, FLAT_YAML2, 'stylish', STYLISH_FLAT),
     (FLAT_JSON1, FLAT_YAML2, 'stylish', STYLISH_FLAT),
     (NESTED_JSON1, NESTED_JSON2, 'stylish', STYLISH_NESTED),
     (NESTED_YML1, NESTED_YAML2, 'stylish', STYLISH_NESTED),

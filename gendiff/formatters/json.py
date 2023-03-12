@@ -5,13 +5,13 @@ def to_result_diff(diff):
     result = {}
     for key in diff:
         status = diff[key]['status']
-        if status == 'ONLY1':
+        if status == 'DELETED':
             valid_value = {
                 'value': diff[key]['value'],
                 'node status': 'REMOVED'
             }
             result[key] = valid_value
-        elif status == 'ONLY2':
+        elif status == 'ADDED':
             valid_value = {
                 'value': diff[key]['value'],
                 'node status': 'ADDED'

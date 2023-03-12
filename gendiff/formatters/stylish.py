@@ -1,16 +1,28 @@
 import itertools
-from gendiff.file_editing.lower_bool import lower_bool
+
+
+def lower_bool(value):
+    if value is False:
+        value = 'false'
+    elif value is True:
+        value = 'true'
+    elif value is None:
+        value = 'null'
+    elif isinstance(value, dict):
+        for k, v in value.items():
+            v = lower_bool(v)
+    return value
 
 
 def to_result_diff(diff):
     result = {}
     for key in diff:
         status = diff[key]['status']
-        if status == 'ONLY1':
+        if status == 'DELETED':
             valid_value = lower_bool(diff[key]['value'])
             new_key = f'- {key}'
             result[new_key] = valid_value
-        elif status == 'ONLY2':
+        elif status == 'ADDED':
             valid_value = lower_bool(diff[key]['value'])
             new_key = f'+ {key}'
             result[new_key] = valid_value

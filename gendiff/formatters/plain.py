@@ -1,4 +1,14 @@
-from gendiff.file_editing.lower_bool import lower_bool
+def lower_bool(value):
+    if value is False:
+        value = 'false'
+    elif value is True:
+        value = 'true'
+    elif value is None:
+        value = 'null'
+    elif isinstance(value, dict):
+        for k, v in value.items():
+            v = lower_bool(v)
+    return value
 
 
 def is_complex_value(val):
@@ -26,9 +36,9 @@ def plain(diff, prefix=''):
     result = []
     for key in diff:
         status = diff[key]['status']
-        if status == 'ONLY1':
+        if status == 'DELETED':
             result.append(f"Property '{key}' was removed")
-        elif status == 'ONLY2':
+        elif status == 'ADDED':
             value = is_complex_value(lower_bool(diff[key]['value']))
             result.append(f"Property '{key}' was added with value: {value}")
         elif status == 'DIFF':

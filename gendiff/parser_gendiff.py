@@ -15,6 +15,3 @@ def parser_gendiff():
     )
     args = parser.parse_args()
     return args
-
-
-__all__ = ('parser_gendiff')

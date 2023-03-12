@@ -1,5 +1,5 @@
-from gendiff.file_editing.read_file import read_file
-from gendiff.file_editing.generate_diff import genetare_sorted_diff
+from gendiff.read_file import read_file
+from gendiff.generate_diff import genetare_sorted_diff
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import plain
 from gendiff.formatters.json import to_json

@@ -1,4 +1,7 @@
-from gendiff.file_editing.gendiff import generate_diff
+import pytest
+
+
+from gendiff.gendiff import generate_diff
 
 
 FLAT_JSON1 = 'tests/fixtures/files/filepath1.json'
@@ -17,50 +20,27 @@ PLAIN_FLAT = 'tests/fixtures/results/plain_flat.txt'
 JSON_NESTED = 'tests/fixtures/results/json_nested.txt'
 JSON_FLAT = 'tests/fixtures/results/json_flat.txt'
 
-
-def test_generate_stylish_flat_diff():
-    with open(STYLISH_FLAT) as file:
-        expected_flat_result = file.read()
-    assert generate_diff(FLAT_JSON1, FLAT_JSON2) == expected_flat_result
-    assert generate_diff(FLAT_YML1, FLAT_YAML2) == expected_flat_result
-    assert generate_diff(FLAT_JSON1, FLAT_YAML2) == expected_flat_result
-
-
-def test_generate_stylish_nested_diff():
-    with open(STYLISH_NESTED) as file:
-        expected_nested_result = file.read()
-    assert generate_diff(NESTED_JSON1, NESTED_JSON2) == expected_nested_result
-    assert generate_diff(NESTED_YML1, NESTED_YAML2) == expected_nested_result
-    assert generate_diff(NESTED_JSON1, NESTED_YAML2) == expected_nested_result
-
-
-def test_generate_plain_flat_diff():
-    with open(PLAIN_FLAT) as file:
-        expected_flat_result = file.read()
-    assert generate_diff(FLAT_JSON1, FLAT_JSON2, 'plain') == expected_flat_result
-    assert generate_diff(FLAT_YML1, FLAT_YAML2, 'plain') == expected_flat_result
-    assert generate_diff(FLAT_JSON1, FLAT_YAML2, 'plain') == expected_flat_result
-
-
-def test_generate_plain_nested_diff():
-    with open(PLAIN_NESTED) as file:
-        expected_nested_result = file.read()
-    assert generate_diff(NESTED_JSON1, NESTED_JSON2, 'plain') == expected_nested_result
-    assert generate_diff(NESTED_YML1, NESTED_YAML2, 'plain') == expected_nested_result
-    assert generate_diff(NESTED_JSON1, NESTED_YAML2, 'plain') == expected_nested_result
-
-
-def test_generate_json_flat_diff():
-    with open(JSON_FLAT) as file:
-        expected_flat_result = file.read()
-    assert generate_diff(FLAT_JSON1, FLAT_JSON2, 'json') == expected_flat_result
-    assert generate_diff(FLAT_YML1, FLAT_YAML2, 'json') == expected_flat_result
-    assert generate_diff(FLAT_JSON1, FLAT_YAML2, 'json') == expected_flat_result
-
-
-def test_generate_json_nested_diff():
-    with open(JSON_NESTED) as file:
-        expected_nested_result = file.read()
-    assert generate_diff(NESTED_JSON1, NESTED_JSON2, 'json') == expected_nested_result
-    assert generate_diff(NESTED_YML1, NESTED_YAML2, 'json') == expected_nested_result
-    assert generate_diff(NESTED_JSON1, NESTED_YAML2, 'json') == expected_nested_result
+@pytest.mark.parametrize('file1, file2, stile, expected', [
+    (FLAT_JSON1, FLAT_JSON2, 'stylish', STYLISH_FLAT),
+    (FLAT_YML1, FLAT_YAML2, 'stylish', STYLISH_FLAT), 
+    (FLAT_JSON1, FLAT_YAML2, 'stylish', STYLISH_FLAT),
+    (NESTED_JSON1, NESTED_JSON2, 'stylish', STYLISH_NESTED),
+    (NESTED_YML1, NESTED_YAML2, 'stylish', STYLISH_NESTED),
+    (NESTED_JSON1, NESTED_YAML2, 'stylish', STYLISH_NESTED),
+    (FLAT_JSON1, FLAT_JSON2, 'plain', PLAIN_FLAT),
+    (FLAT_YML1, FLAT_YAML2, 'plain', PLAIN_FLAT),
+    (FLAT_JSON1, FLAT_YAML2, 'plain', PLAIN_FLAT),
+    (NESTED_JSON1, NESTED_JSON2, 'plain', PLAIN_NESTED),
+    (NESTED_YML1, NESTED_YAML2, 'plain', PLAIN_NESTED),
+    (NESTED_JSON1, NESTED_YAML2, 'plain', PLAIN_NESTED),
+    (FLAT_JSON1, FLAT_JSON2, 'json', JSON_FLAT),
+    (FLAT_YML1, FLAT_YAML2, 'json', JSON_FLAT),
+    (FLAT_JSON1, FLAT_YAML2, 'json', JSON_FLAT),
+    (NESTED_JSON1, NESTED_JSON2, 'json', JSON_NESTED),
+    (NESTED_YML1, NESTED_YAML2, 'json', JSON_NESTED),
+    (NESTED_JSON1, NESTED_YAML2, 'json', JSON_NESTED)
+])
+def test_generate_diff(file1, file2, stile, expected):
+    with open(expected) as file:
+        expected_result = file.read()
+    assert generate_diff(file1, file2, stile) == expected_result

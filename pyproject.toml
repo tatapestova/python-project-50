@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "File diff calculator is a program that compares two files and outputs the result in three styles."
 authors = ["Tata Pestova <tata.pestova@inbox.ru>"]
 readme = "README.md"
 packages = [

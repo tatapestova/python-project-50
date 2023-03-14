@@ -35,19 +35,19 @@ def stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
                     new_key = '- ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
-                        )
+                    )
                 elif status == 'ADDED':
                     value = lower_bool(node['value'])
                     new_key = '+ ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
-                        )
+                    )
                 elif status == 'SAME':
                     value = lower_bool(node['value'])
                     new_key = '  ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
-                        )
+                    )
                 elif status == 'DIFF':
                     value1 = lower_bool(node['value1'])
                     value2 = lower_bool(node['value2'])
@@ -55,16 +55,16 @@ def stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
                     new_key2 = '+ ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key1}: {iter_(value1, depth + 1)}'
-                        )
+                    )
                     lines.append(
                         f'{deep_indent1}{new_key2}: {iter_(value2, depth + 1)}'
-                        )
+                    )
                 elif status == 'NESTED':
                     child = lower_bool(node['value'])
                     new_key = '  ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(child, depth + 1)}'
-                        )
+                    )
             else:
                 pass
         result = itertools.chain("{", lines, [current_indent + "}"])

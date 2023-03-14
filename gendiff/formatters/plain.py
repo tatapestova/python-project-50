@@ -1,53 +1,39 @@
-def lower_bool(value):
-    if value is False:
-        value = 'false'
-    elif value is True:
-        value = 'true'
-    elif value is None:
-        value = 'null'
-    elif isinstance(value, dict):
-        for k, v in value.items():
-            v = lower_bool(v)
-    return value
-
-
-def is_complex_value(val):
+def to_correct_value(val):
     if isinstance(val, dict):
         val = '[complex value]'
+    elif val is False:
+        val = 'false'
+    elif val is True:
+        val = 'true'
+    elif val is None:
+        val = 'null'
     elif isinstance(val, int):
         val
-    elif (val != 'false' and val != 'null' and val != 'true'):
+    else:
         val = f"'{val}'"
     return val
 
 
-def to_change_keys(value, prefix):
-    if not isinstance(value, dict):
-        return str(value)
-    new_value = {}
-    for k, v in value.items():
-        new_key = f'{prefix}{k}'
-        new_value[new_key] = v
-    return new_value
-
-
-def plain(diff, prefix=''):
-    diff = to_change_keys(diff, prefix)
+def plain(diff, path=''):
     result = []
-    for key in diff:
-        status = diff[key]['status']
+    for node in diff:
+        status = node['status']
         if status == 'DELETED':
-            result.append(f"Property '{key}' was removed")
+            result.append(f"Property '{path}{node['key']}' was removed")
         elif status == 'ADDED':
-            value = is_complex_value(lower_bool(diff[key]['value']))
-            result.append(f"Property '{key}' was added with value: {value}")
-        elif status == 'DIFF':
-            value1 = is_complex_value(lower_bool(diff[key]['value1']))
-            value2 = is_complex_value(lower_bool(diff[key]['value2']))
+            val = to_correct_value(node['value'])
             result.append(
-                f"Property '{key}' was updated. From {value1} to {value2}"
+                f"Property '{path}{node['key']}' was added with value: {val}"
+            )
+        elif status == 'DIFF':
+            val1 = to_correct_value(node['value1'])
+            val2 = to_correct_value(node['value2'])
+            key = node['key']
+            result.append(
+                f"Property '{path}{key}' was updated. From {val1} to {val2}"
             )
         elif status == 'NESTED':
-            value = diff[key]['value']
-            result.append(plain(value, prefix=f'{key}.'))
+            child = node['value']
+            key_child = node['key']
+            result.append(plain(child, path=path + f'{key_child}.'))
     return '\n'.join(result)

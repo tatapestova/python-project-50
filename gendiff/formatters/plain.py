@@ -14,7 +14,7 @@ def to_correct_value(val):
     return val
 
 
-def plain(diff, path=''):
+def to_plain(diff, path=''):
     result = []
     for node in diff:
         status = node['status']
@@ -35,5 +35,5 @@ def plain(diff, path=''):
         elif status == 'NESTED':
             child = node['value']
             key_child = node['key']
-            result.append(plain(child, path=path + f'{key_child}.'))
+            result.append(to_plain(child, path=path + f'{key_child}.'))
     return '\n'.join(result)

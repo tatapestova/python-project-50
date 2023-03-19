@@ -1,4 +1,4 @@
-def genetare_sorted_diff(file1, file2):
+def to_generate_sorted_diff(file1, file2):
     keys1 = set(file1)
     keys2 = set(file2)
     all_keys = sorted(keys1.union(keys2))
@@ -26,7 +26,7 @@ def genetare_sorted_diff(file1, file2):
             }
             diff.append(node)
         elif isinstance(file1[key], dict) and isinstance(file2[key], dict):
-            diff_clild = genetare_sorted_diff(file1[key], file2[key])
+            diff_clild = to_generate_sorted_diff(file1[key], file2[key])
             node = {
                 'key': key,
                 'status': 'NESTED',

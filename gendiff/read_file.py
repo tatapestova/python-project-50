@@ -2,19 +2,22 @@ import json
 import yaml
 
 
-def read_file(file):
-    if '.json' in file:
-        format = 'json'
-    elif '.yml' or '.yaml' in file:
-        format = 'yaml'
+def to_define_format(file):
+    format = file.split('.')[-1]
+    if 'yml' or 'yaml' or 'json' == format:
+        return format
     else:
         raise ValueError('This file format is not supported.')
-    return parsing_file(open(file), format)
 
 
-def parsing_file(open_file, format):
-    if format in 'json':
+def to_parsing_file(open_file, format):
+    if format == 'json':
         result = json.load(open_file)
-    elif format in 'yaml':
+    elif format == 'yaml' or 'yml':
         result = yaml.safe_load(open_file)
     return result
+
+
+def to_read_file(file):
+    format = to_define_format(file)
+    return to_parsing_file(open(file), format)

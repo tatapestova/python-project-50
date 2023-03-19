@@ -1,7 +1,7 @@
 import itertools
 
 
-def lower_bool(value):
+def to_correct_value(value):
     if value is False:
         value = 'false'
     elif value is True:
@@ -9,12 +9,12 @@ def lower_bool(value):
     elif value is None:
         value = 'null'
     elif isinstance(value, dict):
-        for k, v in value.items():
-            v = lower_bool(v)
+        for key, val in value.items():
+            val = to_correct_value(val)
     return value
 
 
-def stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
+def to_stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
     def iter_(current_value, depth):
         if not isinstance(current_value, (list, dict)):
             return str(current_value)
@@ -31,26 +31,26 @@ def stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
             if 'status' in node:
                 status = node['status']
                 if status == 'DELETED':
-                    value = lower_bool(node['value'])
+                    value = to_correct_value(node['value'])
                     new_key = '- ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
                     )
                 elif status == 'ADDED':
-                    value = lower_bool(node['value'])
+                    value = to_correct_value(node['value'])
                     new_key = '+ ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
                     )
                 elif status == 'SAME':
-                    value = lower_bool(node['value'])
+                    value = to_correct_value(node['value'])
                     new_key = '  ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
                     )
                 elif status == 'DIFF':
-                    value1 = lower_bool(node['value1'])
-                    value2 = lower_bool(node['value2'])
+                    value1 = to_correct_value(node['value1'])
+                    value2 = to_correct_value(node['value2'])
                     new_key1 = '- ' + node['key']
                     new_key2 = '+ ' + node['key']
                     lines.append(
@@ -60,7 +60,7 @@ def stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
                         f'{deep_indent1}{new_key2}: {iter_(value2, depth + 1)}'
                     )
                 elif status == 'NESTED':
-                    child = lower_bool(node['value'])
+                    child = to_correct_value(node['value'])
                     new_key = '  ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(child, depth + 1)}'

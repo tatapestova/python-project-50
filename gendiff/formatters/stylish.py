@@ -1,7 +1,7 @@
 import itertools
 
 
-def to_correct_value(value):
+def form_correct_value(value):
     if value is False:
         value = 'false'
     elif value is True:
@@ -10,7 +10,7 @@ def to_correct_value(value):
         value = 'null'
     elif isinstance(value, dict):
         for key, val in value.items():
-            val = to_correct_value(val)
+            val = form_correct_value(val)
     return value
 
 
@@ -31,26 +31,26 @@ def to_stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
             if 'status' in node:
                 status = node['status']
                 if status == 'DELETED':
-                    value = to_correct_value(node['value'])
+                    value = form_correct_value(node['value'])
                     new_key = '- ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
                     )
                 elif status == 'ADDED':
-                    value = to_correct_value(node['value'])
+                    value = form_correct_value(node['value'])
                     new_key = '+ ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
                     )
                 elif status == 'SAME':
-                    value = to_correct_value(node['value'])
+                    value = form_correct_value(node['value'])
                     new_key = '  ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(value, depth + 1)}'
                     )
                 elif status == 'DIFF':
-                    value1 = to_correct_value(node['value1'])
-                    value2 = to_correct_value(node['value2'])
+                    value1 = form_correct_value(node['value1'])
+                    value2 = form_correct_value(node['value2'])
                     new_key1 = '- ' + node['key']
                     new_key2 = '+ ' + node['key']
                     lines.append(
@@ -60,7 +60,7 @@ def to_stylish(value, replacer=' ', spaces_count=4):  # noqa: C901
                         f'{deep_indent1}{new_key2}: {iter_(value2, depth + 1)}'
                     )
                 elif status == 'NESTED':
-                    child = to_correct_value(node['value'])
+                    child = form_correct_value(node['value'])
                     new_key = '  ' + node['key']
                     lines.append(
                         f'{deep_indent1}{new_key}: {iter_(child, depth + 1)}'

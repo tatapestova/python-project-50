@@ -2,7 +2,7 @@ import json
 import yaml
 
 
-def to_define_format(file):
+def define_format(file):
     format = file.split('.')[-1]
     if 'yml' or 'yaml' or 'json' == format:
         return format
@@ -10,7 +10,7 @@ def to_define_format(file):
         raise ValueError('This file format is not supported.')
 
 
-def to_parsing_file(open_file, format):
+def parse_file(open_file, format):
     if format == 'json':
         result = json.load(open_file)
     elif format == 'yaml' or 'yml':
@@ -18,6 +18,6 @@ def to_parsing_file(open_file, format):
     return result
 
 
-def to_read_file(file):
-    format = to_define_format(file)
-    return to_parsing_file(open(file), format)
+def read_file(file):
+    format = define_format(file)
+    return parse_file(open(file), format)

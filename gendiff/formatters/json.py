@@ -1,7 +1,7 @@
 import json
 
 
-def to_result_diff(diff):
+def form_result_diff(diff):
     result = {}
     for node in diff:
         status = node['status']
@@ -34,7 +34,7 @@ def to_result_diff(diff):
         else:
             child = node['value']
             valid_value = {
-                'value': to_result_diff(child),
+                'value': form_result_diff(child),
                 'node status': 'NESTED'
             }
             result[key] = valid_value
@@ -42,6 +42,6 @@ def to_result_diff(diff):
 
 
 def to_json(diff):
-    update_diff = to_result_diff(diff)
+    update_diff = form_result_diff(diff)
     result = json.dumps(update_diff, indent=4)
     return result

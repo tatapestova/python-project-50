@@ -1,4 +1,4 @@
-def to_correct_value(val):
+def form_correct_value(val):
     if isinstance(val, dict):
         val = '[complex value]'
     elif val is False:
@@ -21,13 +21,13 @@ def to_plain(diff, path=''):
         if status == 'DELETED':
             result.append(f"Property '{path}{node['key']}' was removed")
         elif status == 'ADDED':
-            val = to_correct_value(node['value'])
+            val = form_correct_value(node['value'])
             result.append(
                 f"Property '{path}{node['key']}' was added with value: {val}"
             )
         elif status == 'DIFF':
-            val1 = to_correct_value(node['value1'])
-            val2 = to_correct_value(node['value2'])
+            val1 = form_correct_value(node['value1'])
+            val2 = form_correct_value(node['value2'])
             key = node['key']
             result.append(
                 f"Property '{path}{key}' was updated. From {val1} to {val2}"

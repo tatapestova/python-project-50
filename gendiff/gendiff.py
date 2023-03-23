@@ -10,7 +10,7 @@ def format_diff(value, format):
         update_value = to_plain(value)
     elif format == 'json':
         update_value = to_json(value)
-    elif format == 'stylish':
+    elif format in ['stylish', to_stylish]:
         update_value = to_stylish(value)
     else:
         raise ValueError('''

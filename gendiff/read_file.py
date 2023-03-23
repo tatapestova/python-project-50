@@ -4,7 +4,7 @@ import yaml
 
 def define_format(file):
     format = file.split('.')[-1]
-    if 'yml' or 'yaml' or 'json' == format:
+    if format in ['yml', 'yaml', 'json']:
         return format
     else:
         raise ValueError('This file format is not supported.')
@@ -13,7 +13,7 @@ def define_format(file):
 def parse_file(open_file, format):
     if format == 'json':
         result = json.load(open_file)
-    elif format == 'yaml' or 'yml':
+    elif format in ['yaml', 'yml']:
         result = yaml.safe_load(open_file)
     return result
 
